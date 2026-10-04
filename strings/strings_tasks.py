@@ -1,7 +1,9 @@
+# Time: O(n), Space: O(n) - list of letters plus its reversed copy
 def is_palindrome(s: str) -> bool:
     cleaned = [ch.lower() for ch in s if ch.isalpha()]
     return cleaned == cleaned[::-1]
 
+# Time: O(n), Space: O(k) - dict of counts, k = number of distinct chars
 def is_anagram(a: str, b: str) -> bool:
     if len(a) != len(b):
         return False
@@ -14,6 +16,7 @@ def is_anagram(a: str, b: str) -> bool:
         counts[ch] -= 1
     return True
 
+# Time: O(n) - two passes, Space: O(k) - dict of counts
 def first_unique_char(s: str | None) -> int:
     if not s:
         return -1
@@ -25,15 +28,19 @@ def first_unique_char(s: str | None) -> int:
             return i
     return -1
 
+# Time: O(n), Space: O(n) - split() builds a list of words
 def count_words(s: str | None) -> int:
     return len(s.split()) if s else 0
 
+# Time: O(n), Space: O(n) - list of words plus the result string
 def reverse_words(s: str | None) -> str:
     return ' '.join(reversed(s.split())) if s else ""
 
+# Time: O(n), Space: O(k) - dict of unique chars (plus the result string)
 def remove_duplicates(s: str | None) -> str:
     return ''.join(dict.fromkeys(s)) if s else ""
 
+# Time: O(n) - single pass, Space: O(k) - dict of counts
 def most_frequent_char(s: str | None) -> str | None:
     if not s:
         return None
@@ -45,6 +52,7 @@ def most_frequent_char(s: str | None) -> str | None:
             best_char, best_count = ch, counts[ch]
     return best_char
 
+# Time: O(n), Space: O(k) - set of chars with an odd count
 def is_palindrome_permutation(s: str | None) -> bool:
     if not s:
         return True
@@ -56,6 +64,7 @@ def is_palindrome_permutation(s: str | None) -> bool:
             odd.add(ch)
     return len(odd) <= 1
 
+# Time: O(n + m), Space: O(n + m) - a stack for each string
 def backspace_compare(a: str | None, b: str | None) -> bool:
     def build(s: str) -> str:
         stack = []
@@ -68,6 +77,7 @@ def backspace_compare(a: str | None, b: str | None) -> bool:
 
     return build(a or "") == build(b or "")
 
+# Time: O(n), Space: O(n) - list of parts plus the compressed string
 def compress(s: str | None) -> str:
     if not s:
         return ""
